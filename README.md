@@ -1,4 +1,8 @@
-bash-wwwchangepermissions
-=========================
+Change folder permissions for Apache mod_userdir
+================================================
 
-BASH - Change folder permissions for mod_userdir (assuming NIS)
+by [RaveMaker][RaveMaker].
+
+Change folder permissions for Apache mod_userdir (assuming NIS)
+
+[RaveMaker]: http://ravemaker.net
