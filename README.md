@@ -1,8 +1,8 @@
 Change folder permissions for Apache mod_userdir
 ================================================
 
-by [RaveMaker][RaveMaker].
-
 Change folder permissions for Apache mod_userdir (assuming NIS)
 
+
+by [RaveMaker][RaveMaker].
 [RaveMaker]: http://ravemaker.net
