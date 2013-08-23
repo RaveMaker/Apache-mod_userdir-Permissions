@@ -1,8 +1,10 @@
 #!/bin/bash
 
+# Set permissions of Users and Groups in this format: 'home\group\username'
 workdir=/scripts
 logfile=$workdir/tmp/change-permissions.run
 finallogfile=$workdir/log/change-permissions-$(date +%y%m%d)
+homedir=/u
 
 (
 cd $workdir/
@@ -16,18 +18,18 @@ echo "******************************************************"
 echo "* Starting permissions update process..." $(date +%y%m%d) "*"
 echo "******************************************************"
 
-for group in `ls /u/`;
+for group in `ls $homedir/`;
 do
 	echo "Change $group Permissions"
 	echo
-	for i in `ls /u/$group/`;
+	for i in `ls $homedir/$group/`;
 	do 
 	if [ $i != "expired" -a $i != "Expired" -a $i != "MOVED" -a $i != ".snapshot" -a $i != "TrashCan" ]  ; 
 	then 
 		echo User Name - $i 
 		echo
 		echo 1: Change $i folder Permissions
-		cd /u/$group/$i/
+		cd $homedir/$group/$i/
 		for dir in `ls --hide --escape WWW | egrep WWW`;  
 		do
 			if [ -d $dir ] ; 
@@ -39,14 +41,14 @@ do
 		done
 		echo
 		echo 2: Change $i folder Ownership
-		chown $i:$group /u/$group/$i/ -R
+		chown $i:$group $homedir/$group/$i/ -R
 		echo
-		if [ -d /u/$group/$i/WWW/ ] ; then
+		if [ -d $homedir/$group/$i/WWW/ ] ; then
 			echo 3: Change $i WWW/ folder Permissions 
-			chmod 755 /u/$group/$i/WWW/ -R
-			find /u/$group/$i/WWW/ -type d -print -exec chmod 755 "{}" \;
-			find /u/$group/$i/WWW/ -type f -name '*.cgi' -print -exec chmod 755 "{}" \;
-			find /u/$group/$i/WWW/ -type f ! -name '*.cgi' -print -exec chmod 644 "{}" \;
+			chmod 755 /$homedir/$group/$i/WWW/ -R
+			find $homedir/$group/$i/WWW/ -type d -print -exec chmod 755 "{}" \;
+			find $homedir/$group/$i/WWW/ -type f -name '*.cgi' -print -exec chmod 755 "{}" \;
+			find $homedir/$group/$i/WWW/ -type f ! -name '*.cgi' -print -exec chmod 644 "{}" \;
 			echo
 		fi
 	fi
