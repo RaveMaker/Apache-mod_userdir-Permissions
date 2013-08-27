@@ -4,19 +4,20 @@
 #
 # by RaveMaker - http://ravemaker.net
 
-workdir=/scripts
+# Load settings
+if [ -f settings.cfg ] ; then
+    echo "Loading settings..."
+    source settings.cfg
+else
+    echo "ERROR: Create settings.cfg (from settings.cfg.example)"
+    exit
+fi;
+
+workdir=`pwd`
 logfile=$workdir/tmp/change-permissions.run
 finallogfile=$workdir/log/change-permissions-$(date +%y%m%d)
-homedir=/u
 
 (
-cd $workdir/
-if [ -a $logfile ] ; then
-	echo ""
-	echo "Script Is Running! check " $logfile
-	echo ""
-	exit; 
-fi
 echo "******************************************************"
 echo "* Starting permissions update process..." $(date +%y%m%d) "*"
 echo "******************************************************"
