@@ -7,5 +7,9 @@ Change folder permissions for Apache mod_userdir (assuming NIS)
 
 1. Clone this script from github or copy the files manually to your prefered directory.
 
+2. Create settings.cfg from settings.cfg.example and change:
+
+- homedir=/ :  your home folders location
+
 by [RaveMaker][RaveMaker].
 [RaveMaker]: http://ravemaker.net
