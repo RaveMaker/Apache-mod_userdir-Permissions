@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # Set permissions of Users and Groups in this format: 'home\group\username'
+#
+# by RaveMaker - http://ravemaker.net
+
 workdir=/scripts
 logfile=$workdir/tmp/change-permissions.run
 finallogfile=$workdir/log/change-permissions-$(date +%y%m%d)
