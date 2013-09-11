@@ -30,6 +30,8 @@ do
 	do 
 	if [ $i != "expired" -a $i != "Expired" -a $i != "MOVED" -a $i != ".snapshot" -a $i != "TrashCan" ]  ; 
 	then 
+		echo "-----------------"
+		echo
 		echo User Name - $i 
 		echo
 		echo 1: Change $i folder Permissions
