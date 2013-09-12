@@ -13,29 +13,29 @@ else
     exit
 fi;
 
-workdir=`pwd`
-logfile=$workdir/tmp/change-permissions.run
-finallogfile=$workdir/log/change-permissions-$(date +%y%m%d)
+WorkDir=`pwd`
+LogFile=$WorkDir/tmp/change-permissions.run
+FinalLogFile=$WorkDir/log/change-permissions-$(date +%y%m%d)
 
 (
 echo "******************************************************"
 echo "* Starting permissions update process..." $(date +%y%m%d) "*"
 echo "******************************************************"
 
-for group in `ls $homedir/`;
+for Group in `ls $HomeDir/`;
 do
-	echo "Change $group Permissions"
+	echo "Change $Group Permissions"
 	echo
-	for i in `ls $homedir/$group/`;
+	for User in `ls $HomeDir/$Group/`;
 	do 
-	if [ $i != "expired" -a $i != "Expired" -a $i != "MOVED" -a $i != ".snapshot" -a $i != "TrashCan" ]  ; 
+	if [ $User != "expired" -a $User != "Expired" -a $User != "MOVED" -a $User != ".snapshot" -a $User != "TrashCan" ]  ; 
 	then 
 		echo "-----------------"
 		echo
-		echo User Name - $i 
+		echo User Name - $User 
 		echo
-		echo 1: Change $i folder Permissions
-		cd $homedir/$group/$i/
+		echo 1: Change $User folder Permissions
+		cd $HomeDir/$Group/$User/
 		for dir in `ls --hide --escape WWW | egrep WWW`;  
 		do
 			if [ -d $dir ] ; 
@@ -46,15 +46,15 @@ do
 			fi
 		done
 		echo
-		echo 2: Change $i folder Ownership
-		chown $i:$group $homedir/$group/$i/ -R
+		echo 2: Change $User folder Ownership
+		chown $User:$Group $HomeDir/$Group/$User/ -R
 		echo
-		if [ -d $homedir/$group/$i/WWW/ ] ; then
-			echo 3: Change $i WWW/ folder Permissions 
-			chmod 755 /$homedir/$group/$i/WWW/ -R
-			find $homedir/$group/$i/WWW/ -type d -print -exec chmod 755 "{}" \;
-			find $homedir/$group/$i/WWW/ -type f -name '*.cgi' -print -exec chmod 755 "{}" \;
-			find $homedir/$group/$i/WWW/ -type f ! -name '*.cgi' -print -exec chmod 644 "{}" \;
+		if [ -d $HomeDir/$Group/$User/WWW/ ] ; then
+			echo 3: Change $User WWW/ folder Permissions 
+			chmod 755 /$HomeDir/$Group/$User/WWW/ -R
+			find $HomeDir/$Group/$User/WWW/ -type d -print -exec chmod 755 "{}" \;
+			find $HomeDir/$Group/$User/WWW/ -type f -name '*.cgi' -print -exec chmod 755 "{}" \;
+			find $HomeDir/$Group/$User/WWW/ -type f ! -name '*.cgi' -print -exec chmod 644 "{}" \;
 			echo
 		fi
 	fi
@@ -62,6 +62,6 @@ do
 	echo
 	echo "Done !!"
 done
-) 2>&1 | tee -a $logfile
+) 2>&1 | tee -a $LogFile
 
-mv $logfile $finallogfile
+mv $LogFile $FinalLogFile
