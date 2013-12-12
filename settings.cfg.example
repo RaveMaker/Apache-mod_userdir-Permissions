@@ -5,4 +5,8 @@
 # --------------------------------------------------------
 
 # Settings
-HomeDir=/home
+homedir=/u
+workdir=/scripts
+logfile=$workdir/tmp/change-permissions.run
+finallogfile=$workdir/log/change-permissions-$(date +%Y%m%d)
+
