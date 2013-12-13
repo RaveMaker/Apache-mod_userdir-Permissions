@@ -85,73 +85,73 @@ function set-permissions
 		echo
 		echo -e "User Name - ${red}$user${nocolor}"
 		echo
-		cd "/$homedir/$group/$user/"
+		cd "$homedir/$group/$user/"
 		echo -n "Changed to folder: "
 		echo `pwd`
 		echo
 		echo -e "1: Change ${red}$user${nocolor} folder Permissions"
-		chmod 711 "/$homedir/$group/$user/" ; 1> /dev/null
-		if [ ! -d "/$homedir/$group/$user/Desktop/" ] ; then
+		chmod 711 "$homedir/$group/$user/" ; 1> /dev/null
+		if [ ! -d "$homedir/$group/$user/Desktop/" ] ; then
 			echo -e "Creating folder: ${red}Desktop${nocolor}"
-			mkdir "/$homedir/$group/$user/Desktop"
+			mkdir "$homedir/$group/$user/Desktop"
 		fi
-		if [ ! -d "/$homedir/$group/$user/My Documents/" ] ; then
+		if [ ! -d "$homedir/$group/$user/My Documents/" ] ; then
 			echo -e "Creating folder: ${red}My Documents${nocolor}"
-			mkdir "/$homedir/$group/$user/My Documents"
+			mkdir "$homedir/$group/$user/My Documents"
 		fi
-		if [ ! -d "/$homedir/$group/$user/Downloads/" ] ; then
+		if [ ! -d "$homedir/$group/$user/Downloads/" ] ; then
 			echo -e "Creating folder: ${red}Downloads${nocolor}"
-			mkdir "/$homedir/$group/$user/Downloads"
+			mkdir "$homedir/$group/$user/Downloads"
 		fi
-		if [ ! -d "/$homedir/$group/$user/Favorites/" ] ; then
+		if [ ! -d "$homedir/$group/$user/Favorites/" ] ; then
 			echo -e "Creating folder: ${red}Favorites${nocolor}"
-			mkdir "/$homedir/$group/$user/Favorites"
+			mkdir "$homedir/$group/$user/Favorites"
 		fi
 		cd "My Documents"
-		if [ ! -d "/$homedir/$group/$user/My Documents/My Music/" ] ; then
+		if [ ! -d "$homedir/$group/$user/My Documents/My Music/" ] ; then
 			echo -e "Creating folder: ${red}My Music${nocolor}"
-			mkdir "/$homedir/$group/$user/My Documents/My Music"
+			mkdir "$homedir/$group/$user/My Documents/My Music"
 		fi
-		if [ ! -d "/$homedir/$group/$user/My Documents/My Videos/" ] ; then
+		if [ ! -d "$homedir/$group/$user/My Documents/My Videos/" ] ; then
 			echo -e "Creating folder: ${red}My Videos${nocolor}"
-			mkdir "/$homedir/$group/$user/My Documents/My Videos"
+			mkdir "$homedir/$group/$user/My Documents/My Videos"
 		fi
-		if [ ! -d "/$homedir/$group/$user/My Documents/My Pictures/" ] ; then
+		if [ ! -d "$homedir/$group/$user/My Documents/My Pictures/" ] ; then
 			echo -e "Creating folder: ${red}My Pictures${nocolor}"
-			mkdir "/$homedir/$group/$user/My Documents/My Pictures"
+			mkdir "$homedir/$group/$user/My Documents/My Pictures"
 		fi
-		if [ ! -d "/$homedir/$group/$user/WWW/" ] ; then
+		if [ ! -d "$homedir/$group/$user/WWW/" ] ; then
 			echo -e "Creating folder: ${red}WWW${nocolor}"
-			mkdir "/$homedir/$group/$user/WWW"
+			mkdir "$homedir/$group/$user/WWW"
 		fi
-		for dir in `ls -a /$homedir/$group/$user/` ; do
-			if [ -d "/$homedir/$group/$user/$dir" -a "$dir" != "ownCloud" -a "$dir" != "WWW" -a "$dir" != ".snapshot" -a "$dir" != "." -a "$dir" != ".." ] ;
+		for dir in `ls -a $homedir/$group/$user/` ; do
+			if [ -d "$homedir/$group/$user/$dir" -a "$dir" != "ownCloud" -a "$dir" != "WWW" -a "$dir" != ".snapshot" -a "$dir" != "." -a "$dir" != ".." ] ;
 			then
-				chmod 700 "/$homedir/$group/$user/$dir" ; 1> /dev/null
-				find "/$homedir/$group/$user/$dir/" -type d -print -exec chmod 700 "{}" \; 1> /dev/null
-				find "/$homedir/$group/$user/$dir/" -type f -print -exec chmod 600 "{}" \; 1> /dev/null
-			elif [ -f "/$homedir/$group/$user/$dir" -a "$dir" != "ownCloud" -a "$dir" != "WWW" -a "$dir" != ".snapshot" -a "$dir" != "." -a "$dir" != ".." ] ;
+				chmod 700 "$homedir/$group/$user/$dir" ; 1> /dev/null
+				find "$homedir/$group/$user/$dir/" -type d -print -exec chmod 700 "{}" \; 1> /dev/null
+				find "$homedir/$group/$user/$dir/" -type f -print -exec chmod 600 "{}" \; 1> /dev/null
+			elif [ -f "$homedir/$group/$user/$dir" -a "$dir" != "ownCloud" -a "$dir" != "WWW" -a "$dir" != ".snapshot" -a "$dir" != "." -a "$dir" != ".." ] ;
 			then
-				chmod 600 "/$homedir/$group/$user/$dir" ; 1> /dev/null
+				chmod 600 "$homedir/$group/$user/$dir" ; 1> /dev/null
 			fi
 		done
 		echo
 		echo -e "2: Change ${red}$user${nocolor} folder Ownership"
-		chown "$user:$group" "/$homedir/$group/$user/" -R ;  1> /dev/null
+		chown "$user:$group" "$homedir/$group/$user/" -R ;  1> /dev/null
 		echo
-		if [ -d "/$homedir/$group/$user/WWW/" ] ; then
+		if [ -d "$homedir/$group/$user/WWW/" ] ; then
 			echo -e "3: Change ${red}$user WWW${nocolor} folder Permissions"
-			chmod 755 "/$homedir/$group/$user/WWW/" ; 1> /dev/null
-			find "/$homedir/$group/$user/WWW/" -type d -print -exec chmod 755 "{}" \; 1> /dev/null
-			find "/$homedir/$group/$user/WWW/" -type f -print -exec chmod 644 "{}" \; 1> /dev/null
+			chmod 755 "$homedir/$group/$user/WWW/" ; 1> /dev/null
+			find "$homedir/$group/$user/WWW/" -type d -print -exec chmod 755 "{}" \; 1> /dev/null
+			find "$homedir/$group/$user/WWW/" -type f -print -exec chmod 644 "{}" \; 1> /dev/null
 			echo
 		fi
-		if [ -d "/$homedir/$group/$user/ownCloud/" ] ; then
+		if [ -d "$homedir/$group/$user/ownCloud/" ] ; then
 			echo -e "4: Change $user ${red}ownCloud${nocolor} folder Permissions"
-			chown "$user:apache" "/$homedir/$group/$user/ownCloud/" -R ; 1> /dev/null
-			chmod 770 "/$homedir/$group/$user/ownCloud/" ; 1> /dev/null
-			find "/$homedir/$group/$user/ownCloud/" -type d -print -exec chmod 770 "{}" \; 1> /dev/null
-			find "/$homedir/$group/$user/ownCloud/" -type f -print -exec chmod 660 "{}" \; 1> /dev/null
+			chown "$user:apache" "$homedir/$group/$user/ownCloud/" -R ; 1> /dev/null
+			chmod 770 "$homedir/$group/$user/ownCloud/" ; 1> /dev/null
+			find "$homedir/$group/$user/ownCloud/" -type d -print -exec chmod 770 "{}" \; 1> /dev/null
+			find "$homedir/$group/$user/ownCloud/" -type f -print -exec chmod 660 "{}" \; 1> /dev/null
 			echo
 		fi
 	fi
@@ -165,22 +165,22 @@ echo -e "Starting permissions update process... ${red}$(date +%d-%m-%Y)${nocolor
 if [ ! -z "$user" -a ! -z "$group" ] ; then
 	set-permissions
 elif [ -z "$user" -a ! -z "$group" ] ; then
-	for user in `ls /$homedir/$group/` ; do
+	for user in `ls $homedir/$group/` ; do
 		set-permissions
 	done
 elif [ ! -z "$user" -a -z "$group" ] ; then
-	for group in `ls /$homedir/` ; do
-		for readuser in `ls /$homedir/$group/` ; do
+	for group in `ls $homedir/` ; do
+		for readuser in `ls $homedir/$group/` ; do
 			if [ $user = $readuser ] ; then
 				set-permissions
 			fi
 		done
 	done
 else
-	for group in `ls /$homedir/` ; do
+	for group in `ls $homedir/` ; do
 		echo -e "Change ${red}$group${nocolor} Permissions"
 		echo
-		for user in `ls /$homedir/$group/` ; do
+		for user in `ls $homedir/$group/` ; do
 			set-permissions
 		done
 	done
