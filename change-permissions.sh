@@ -9,10 +9,19 @@ else
     exit
 fi;
 
-#Define Colors
-red='\e[0;31m'
-green='\e[0;32m'
-nocolor='\e[0m'
+#Check if shell is interactive
+#Add to crontab first row CRONJOB="1" 
+if [ ! -z "$CRONJOB" ]; then
+        #Define Colors
+        red=""
+        green=""
+        nocolor=""
+else
+        #Define Colors
+        red='\e[0;31m'
+        green='\e[0;32m'
+        nocolor='\e[0m'
+fi
 
 #Show Help
 if [ "$1" = "--help" -o "$1" = "-h" -o "$1" = "-help" ] ; then
