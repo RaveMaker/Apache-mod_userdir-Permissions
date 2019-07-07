@@ -11,5 +11,6 @@ Change folder permissions for Apache mod_userdir (assuming NIS)
 
 - homedir=/ :  your home folders location
 
-by [RaveMaker][RaveMaker].
+by: [RaveMaker][RaveMaker].
+
 [RaveMaker]: http://ravemaker.net
