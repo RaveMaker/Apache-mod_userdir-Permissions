@@ -116,15 +116,18 @@ function change-permissions() {
     echo -e "${green}==========================================================${nocolor}"
     echo
     echo -e "Change ${red}$user${nocolor} @ ${red}$group${nocolor} Permissions"
+
+    echo -e "1: Change ${red}$user${nocolor} folder Ownership"
     cd "$homedir/$group/$user/" || return
     echo -n "Changed to folder: "
     pwd
-    echo -e "1: Change ${red}$user${nocolor} folder Ownership"
     if ! chown "$user:$group" . -R >/dev/null; then
       echo "Error: chown $user:$group $homedir/$group/$user/ -R" >>"$logfile"
     fi
+
     echo -e "2: Change ${red}$user${nocolor} folder Permissions"
     chmod 711 . >/dev/null
+
     create-folders
 
     cd "$homedir/$group/$user/" || return
