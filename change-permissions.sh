@@ -160,7 +160,7 @@ function clear-logs-and-exit() {
 }
 
 function change-group-permissions() {
-  cd "$homedir/$group/" || clear-logs-and-exit
+  cd "$homedir/$group/" || return
   echo -n "Changed to folder: "
   pwd
   for user in *; do
@@ -169,11 +169,11 @@ function change-group-permissions() {
 }
 
 function change-user-permissions() {
-  cd "$homedir/" || clear-logs-and-exit
+  cd "$homedir/" || return
   echo -n "Changed to folder: "
   pwd
   for group in *; do
-    cd "$homedir/$group/" || clear-logs-and-exit
+    cd "$homedir/$group/" || return
     echo -n "Changed to folder: "
     pwd
     for readuser in *; do
@@ -186,13 +186,13 @@ function change-user-permissions() {
 
 function change-all-permissions() {
   echo "Changing all users permissions"
-  cd "$homedir/" || clear-logs-and-exit
+  cd "$homedir/" || return
   echo -n "Changed to folder: "
   pwd
   for group in *; do
     echo -e "Change ${red}$group${nocolor} Permissions"
     echo
-    cd "$homedir/$group/" || clear-logs-and-exit
+    cd "$homedir/$group/" || return
     echo -n "Changed to folder: "
     pwd
     for user in *; do
