@@ -1,7 +1,17 @@
 Change folder permissions for Apache mod_userdir
 ================================================
 
-Change folder permissions for Apache mod_userdir (assuming NIS)
+Change folder permissions for Apache mod_userdir. 
+
+homedir tree style:
+```
+/home/group/user
+```
+
+Apache userdir tree style (folder name configured in settings.cfg):
+```
+/home/group/user/WWW
+```
 
 ### Installation
 
