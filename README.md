@@ -1,7 +1,9 @@
-Change folder permissions for Apache mod_userdir
+Secure linux homedir permissions
 ================================================
 
-Change folder permissions for Apache mod_userdir. 
+Secure homedir for linux users including support for Apache mod_userdir.
+
+Set permissions and ownership to users/groups/all homedir. 
 
 homedir tree style:
 ```
