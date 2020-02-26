@@ -40,6 +40,12 @@ log="$workdir/log"
 ./change-permissions.sh -all
 ```
 
+To disable colors (for email report) pass the param 1 to the script:
+```
+./change-permissions.sh -all 1
+./change-permissions.sh -u username 1
+```
+
 Author: [RaveMaker][RaveMaker].
 
 [RaveMaker]: http://ravemaker.net
