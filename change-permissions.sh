@@ -115,6 +115,9 @@ function change-permissions() {
   if ! element-in "$user" "${excludeusersarray[@]}"; then
     if [ ! -d "$homedir/$group/$user" ]; then
       echo -e "User ${red}$user${nocolor} not found!"
+      if [ ! -d "$homedir/$group" ]; then
+        echo -e "Group ${red}$group${nocolor} not found!"
+      fi
       return
     fi
     echo -e "${green}==========================================================${nocolor}"
