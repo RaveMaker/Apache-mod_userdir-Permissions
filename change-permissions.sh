@@ -125,8 +125,6 @@ function change-permissions() {
     echo -e "Change ${red}$user${nocolor} @ ${red}$group${nocolor} Permissions"
     echo -e "1: Change ${red}$user${nocolor} folder Ownership"
     cd "$homedir/$group/$user/" || return
-    echo -n "Changed to folder: "
-    pwd
     if ! chown "$user:$group" . -R >/dev/null; then
       echo "Error: chown $user:$group $homedir/$group/$user/ -R" >>"$logfile"
     fi
@@ -137,8 +135,6 @@ function change-permissions() {
     create-folders
 
     cd "$homedir/$group/$user/" || return
-    echo -n "Changed to folder: "
-    pwd
     for dir in *; do
       if [ -d "$dir" ] && [ "$dir" != "$wwwfolder" ]; then
         chmod 700 "$homedir/$group/$user/$dir" >/dev/null
@@ -172,8 +168,6 @@ function change-group-permissions() {
     return
   fi
   cd "$homedir/$group/" || return
-  echo -n "Changed to folder: "
-  pwd
   for user in *; do
     change-permissions
   done
@@ -182,12 +176,8 @@ function change-group-permissions() {
 function change-user-permissions() {
   userfound=1
   cd "$homedir/" || return
-  echo -n "Changed to folder: "
-  pwd
   for group in *; do
     cd "$homedir/$group/" || return
-    echo -n "Changed to folder: "
-    pwd
     for readuser in *; do
       if [ "$user" == "$readuser" ]; then
         change-permissions
@@ -204,14 +194,10 @@ function change-user-permissions() {
 function change-all-permissions() {
   echo "Changing all users permissions"
   cd "$homedir/" || return
-  echo -n "Changed to folder: "
-  pwd
   for group in *; do
     echo -e "Change ${red}$group${nocolor} Permissions"
     echo
     cd "$homedir/$group/" || return
-    echo -n "Changed to folder: "
-    pwd
     for user in *; do
       change-permissions
     done
@@ -221,8 +207,6 @@ function change-all-permissions() {
 # Start logging
 (
   cd "$workdir/" || clear-logs-and-exit
-  echo -n "Changed to folder: "
-  pwd
   echo -e "Starting permissions update process... ${red}$mydate${nocolor}"
   # specified user and group
   if [ -n "$user" ] && [ -n "$group" ]; then
