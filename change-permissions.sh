@@ -7,7 +7,7 @@
 # Load settings.cfg
 if [ -f settings.cfg ]; then
   echo "Loading settings..."
-  source settings.cfg
+  . settings.cfg
 else
   echo "ERROR: Create settings.cfg (from settings.cfg.example)"
   exit
@@ -157,6 +157,48 @@ function clear-logs-and-exit() {
   exit
 }
 
+function change-group-permissions() {
+  cd "$homedir/$group/" || clear-logs-and-exit
+  echo -n "Changed to folder: "
+  pwd
+  for user in *; do
+    change-permissions
+  done
+}
+
+function change-user-permissions() {
+  cd "$homedir/" || clear-logs-and-exit
+  echo -n "Changed to folder: "
+  pwd
+  for group in *; do
+    cd "$homedir/$group/" || clear-logs-and-exit
+    echo -n "Changed to folder: "
+    pwd
+    for readuser in *; do
+      if [ "$user" = "$readuser" ]; then
+        change-permissions
+      fi
+    done
+  done
+}
+
+function change-all-permissions() {
+  echo "Changing all users permissions"
+  cd "$homedir/" || clear-logs-and-exit
+  echo -n "Changed to folder: "
+  pwd
+  for group in *; do
+    echo -e "Change ${red}$group${nocolor} Permissions"
+    echo
+    cd "$homedir/$group/" || clear-logs-and-exit
+    echo -n "Changed to folder: "
+    pwd
+    for user in *; do
+      change-permissions
+    done
+  done
+}
+
 # Start logging
 (
   cd "$workdir/" || clear-logs-and-exit
@@ -168,43 +210,13 @@ function clear-logs-and-exit() {
     change-permissions
   # specified group only
   elif [ -z "$user" ] && [ -n "$group" ]; then
-    cd "$homedir/$group/" || clear-logs-and-exit
-    echo -n "Changed to folder: "
-    pwd
-    for user in *; do
-      change-permissions
-    done
+    change-group-permissions
   # specified user only
   elif [ -n "$user" ] && [ -z "$group" ]; then
-    cd "$homedir/" || clear-logs-and-exit
-    echo -n "Changed to folder: "
-    pwd
-    for group in *; do
-      cd "$homedir/$group/" || clear-logs-and-exit
-      echo -n "Changed to folder: "
-      pwd
-      for readuser in *; do
-        if [ "$user" = "$readuser" ]; then
-          change-permissions
-        fi
-      done
-    done
+    change-user-permissions
   # run on all users
   elif [ "$all" == "true" ] && [ -z "$user" ] && [ -z "$group" ]; then
-    echo "Changing all users permissions"
-    cd "$homedir/" || clear-logs-and-exit
-    echo -n "Changed to folder: "
-    pwd
-    for group in *; do
-      echo -e "Change ${red}$group${nocolor} Permissions"
-      echo
-      cd "$homedir/$group/" || clear-logs-and-exit
-      echo -n "Changed to folder: "
-      pwd
-      for user in *; do
-        change-permissions
-      done
-    done
+    change-all-permissions
   fi
   echo -e "======================================"
   echo -e "|               ${green}All Done${nocolor}             |"
