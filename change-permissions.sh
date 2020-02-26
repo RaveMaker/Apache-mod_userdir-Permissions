@@ -169,6 +169,7 @@ function change-group-permissions() {
 }
 
 function change-user-permissions() {
+  userfound=1
   cd "$homedir/" || return
   echo -n "Changed to folder: "
   pwd
@@ -179,9 +180,14 @@ function change-user-permissions() {
     for readuser in *; do
       if [ "$user" = "$readuser" ]; then
         change-permissions
+        userfound=0
       fi
     done
   done
+  if [ "$userfound" == 1 ]; then
+    echo -e "User ${red}$user${nocolor} not found!"
+  fi
+  echo
 }
 
 function change-all-permissions() {
