@@ -7,3 +7,5 @@ workdir=/scripts
 excludeusersarray=("expired" "Expired" "MOVED" "Moved" ".snapshot" "TrashCan")
 foldersarray=("Desktop" "My Documents" "My Documents/My Music" "My Documents/My Videos" "My Documents/My Pictures" "Downloads" "Favorites")
 wwwfolder="WWW"
+tmp="$workdir/tmp"
+log="$workdir/log"

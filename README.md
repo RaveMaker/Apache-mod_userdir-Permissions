@@ -9,7 +9,16 @@ Change folder permissions for Apache mod_userdir (assuming NIS)
 
 2. Create settings.cfg from settings.cfg.example and change:
 
-- homedir=/ :  your home folders location
+```
+myname=change-permissions
+homedir=/u
+workdir=/scripts
+excludeusersarray=("expired" "Expired" "MOVED" "Moved" ".snapshot" "TrashCan")
+foldersarray=("Desktop" "My Documents" "My Documents/My Music" "My Documents/My Videos" "My Documents/My Pictures" "Downloads" "Favorites")
+wwwfolder="WWW"
+tmp="$workdir/tmp"
+log="$workdir/log"
+```
 
 Author: [RaveMaker][RaveMaker].
 

@@ -16,8 +16,8 @@ fi
 # Define vars
 all="false"
 mydate="$(date +%Y-%m-%d-%H-%M-%S)"
-logfile="$workdir/tmp/$myname.run"
-finallogfile="$workdir/log/$myname-$mydate.log"
+logfile="$tmp/$myname.run"
+finallogfile="$log/$myname-$mydate.log"
 
 # Define Colors
 red='\e[0;31m'
