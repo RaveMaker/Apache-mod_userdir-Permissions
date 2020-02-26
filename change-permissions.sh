@@ -113,6 +113,10 @@ function element-in() {
 # Change user permissions
 function change-permissions() {
   if ! element-in "$user" "${excludeusersarray[@]}"; then
+    if [ ! -d "$homedir/$group/$user" ]; then
+      echo -e "User ${red}$user${nocolor} not found!"
+      return
+    fi
     echo -e "${green}==========================================================${nocolor}"
     echo
     echo -e "Change ${red}$user${nocolor} @ ${red}$group${nocolor} Permissions"
@@ -182,7 +186,7 @@ function change-user-permissions() {
     echo -n "Changed to folder: "
     pwd
     for readuser in *; do
-      if [ "$user" = "$readuser" ]; then
+      if [ "$user" == "$readuser" ]; then
         change-permissions
         userfound=0
       fi
