@@ -114,9 +114,9 @@ function element-in() {
 function change-permissions() {
   if ! element-in "$user" "${excludeusersarray[@]}"; then
     if [ ! -d "$homedir/$group/$user" ]; then
-      echo -e "User ${red}$user${nocolor} not found!"
+      echo -e "${red}User $user not found!${nocolor}"
       if [ ! -d "$homedir/$group" ]; then
-        echo -e "Group ${red}$group${nocolor} not found!"
+        echo -e "${red}Group $group not found!${nocolor}"
       fi
       return
     fi
@@ -164,7 +164,7 @@ function clear-logs-and-exit() {
 
 function change-group-permissions() {
   if [ ! -d "$homedir/$group/" ]; then
-    echo -e "Group ${red}$group${nocolor} not found!"
+    echo -e "${red}Group $group not found!${nocolor}"
     return
   fi
   cd "$homedir/$group/" || return
@@ -186,7 +186,7 @@ function change-user-permissions() {
     done
   done
   if [ "$userfound" == 1 ]; then
-    echo -e "User ${red}$user${nocolor} not found!"
+    echo -e "${red}User $user not found!${nocolor}"
   fi
   echo
 }
