@@ -103,7 +103,7 @@ function create-folders() {
 
 # checks if an item is in an array
 # accepts item and array, returns 0 or 1
-function elementIn() {
+function element-in() {
   local e match="$1"
   shift
   for e; do [[ "$e" == "$match" ]] && return 0; done
@@ -112,11 +112,10 @@ function elementIn() {
 
 # Change user permissions
 function change-permissions() {
-  if ! elementIn "$user" "${excludeusersarray[@]}"; then
+  if ! element-in "$user" "${excludeusersarray[@]}"; then
     echo -e "${green}==========================================================${nocolor}"
     echo
     echo -e "Change ${red}$user${nocolor} @ ${red}$group${nocolor} Permissions"
-
     echo -e "1: Change ${red}$user${nocolor} folder Ownership"
     cd "$homedir/$group/$user/" || return
     echo -n "Changed to folder: "
