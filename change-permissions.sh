@@ -160,6 +160,10 @@ function clear-logs-and-exit() {
 }
 
 function change-group-permissions() {
+  if [ ! -d "$homedir/$group/" ]; then
+    echo -e "Group ${red}$group${nocolor} not found!"
+    return
+  fi
   cd "$homedir/$group/" || return
   echo -n "Changed to folder: "
   pwd
