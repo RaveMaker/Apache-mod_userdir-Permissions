@@ -5,5 +5,5 @@ myname=change-permissions
 homedir=/u
 workdir=/scripts
 excludeusersarray=("expired" "Expired" "MOVED" "Moved" ".snapshot" "TrashCan")
-foldersarray=("Desktop" "My Documents" "My Documents\My Music" "My Documents\My Videos" "My Documents\My Pictures" "Downloads" "Favorites")
+foldersarray=("Desktop" "My Documents" "My Documents/My Music" "My Documents/My Videos" "My Documents/My Pictures" "Downloads" "Favorites")
 wwwfolder="WWW"
