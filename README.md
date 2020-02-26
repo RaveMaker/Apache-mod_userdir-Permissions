@@ -32,6 +32,15 @@ tmp="$workdir/tmp"
 log="$workdir/log"
 ```
 
+### Use
+```
+./change-permissions.sh -u username
+./change-permissions.sh -u username -g group
+./change-permissions.sh -g group
+./change-permissions.sh -all
+```
+
 Author: [RaveMaker][RaveMaker].
 
 [RaveMaker]: http://ravemaker.net
+
